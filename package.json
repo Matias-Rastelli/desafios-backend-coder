@@ -1,0 +1,21 @@
+{
+  "name": "desafios-backend-coder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Matias-Rastelli/desafios-backend-coder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Matias-Rastelli/desafios-backend-coder/issues"
+  },
+  "homepage": "https://github.com/Matias-Rastelli/desafios-backend-coder#readme"
+}

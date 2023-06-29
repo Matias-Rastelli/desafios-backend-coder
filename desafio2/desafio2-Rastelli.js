@@ -2,15 +2,31 @@ import fs from "fs/promises"
 
 class ProductManager {
   constructor() {
-    //crear el archivo
     this.path = `./products.json`
     this.products = []
+    this.#writeFile(this.products)
+  }
+
+  #readFile = async () => {
+    try {
+      const file = await fs.readFile(this.path, `utf-8`)
+      const products = JSON.parse(file)
+      return products
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  #writeFile = async (array) => {
+    try {
+      await fs.writeFile(this.path, JSON.stringify(array))
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   addProduct = async (title, description, price, thumbnail, code, stock) => {
     try {
-      const file = await fs.readFile(this.path, `utf-8`)
-      const products = JSON.parse(file)
+      const products = await this.#readFile()
 
       const newProduct = {
         id: products.length == 0 ? 1 : products[products.length - 1].id + 1,
@@ -36,7 +52,7 @@ class ProductManager {
 
       this.products = products
       this.products.push(newProduct)
-      await fs.writeFile(this.path, JSON.stringify(products))
+      await this.#writeFile(products)
     } catch (e) {
       console.log(e)
     }
@@ -44,8 +60,7 @@ class ProductManager {
 
   getProducts = async () => {
     try {
-      const file = await fs.readFile(this.path, `utf-8`)
-      const products = JSON.parse(file)
+      const products = await this.#readFile()
       return products
     } catch (e) {
       console.log(e)
@@ -53,44 +68,66 @@ class ProductManager {
   }
 
   getProductByID = async (id) => {
-    const file = await fs.readFile(this.path, `utf-8`)
-    const products = JSON.parse(file)
+    try {
+      const products = await this.#readFile()
 
-    const productFinded = products.find((product) => product.id === id)
-    if (!productFinded) {
-      return console.log("Not Found!")
+      const productFinded = products.find((product) => product.id === id)
+      if (!productFinded) {
+        return console.log("Not Found!")
+      }
+      return productFinded
+    } catch (e) {
+      console.log(e)
     }
-    return productFinded
   }
 
   updateProduct = async (id, updatedData) => {
-    const file = await fs.readFile(this.path, `utf-8`)
-    const products = JSON.parse(file)
+    try {
+      const products = await this.#readFile()
 
-    const IdProductToUpdate = products.findIndex((product) => product.id === id)
-    if (IdProductToUpdate === -1) return console.log(`Product not found`)
-
-    const updatedProduct = {
-      ...products[IdProductToUpdate],
-      ...updatedData,
-      id: products[IdProductToUpdate].id,
-    }
-
-    if (updatedProduct.code !== products[IdProductToUpdate]) {
-      const isDuplicated = products.some(
-        (product) => product.code === updatedProduct.code
+      const IdProductToUpdate = products.findIndex(
+        (product) => product.id === id
       )
-      if (isDuplicated) {
-        return console.log(`Campo "Code" duplicado`)
+      if (IdProductToUpdate === -1) return console.log(`Product not found`)
+
+      const updatedProduct = {
+        ...products[IdProductToUpdate],
+        ...updatedData,
+        id: products[IdProductToUpdate].id,
       }
+
+      if (updatedProduct.code !== products[IdProductToUpdate].code) {
+        const isDuplicated = products.some(
+          (product) => product.code === updatedProduct.code
+        )
+        if (isDuplicated) {
+          return console.log(`Campo "Code" duplicado`)
+        }
+      }
+      products[IdProductToUpdate] = updatedProduct
+      this.products = products
+      await this.#writeFile(products)
+      return updatedProduct
+    } catch (e) {
+      console.log(e)
     }
-    products[IdProductToUpdate] = updatedProduct
-    this.products = products
-    await fs.writeFile(this.path, JSON.stringify(products))
-    return console.log(updatedProduct)
   }
 
-  deleteProduct = (id) => {
-    //Eliminar un producto
+  deleteProduct = async (id) => {
+    try {
+      const products = await this.#readFile()
+
+      const IdProductToDelete = products.findIndex(
+        (product) => product.id === id
+      )
+      if (IdProductToDelete === -1) return console.log(`Product not found`)
+
+      const newProducts = products.filter((product) => product.id != id)
+
+      this.products = newProducts
+      await this.#writeFile(newProducts)
+    } catch (e) {
+      console.log(e)
+    }
   }
 }

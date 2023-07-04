@@ -1,8 +1,8 @@
-Consigna
+## Consigna
 
 Realizar una clase “ProductManager” que gestione un conjunto de productos.
 
-Aspectos a incluir
+## Aspectos a incluir
 
 Debe crearse desde su constructor con el elemento products, el cual será un arreglo vacío.
 
@@ -26,5 +26,7 @@ Debe contar con un método “getProducts” el cual debe devolver el arreglo co
 Debe contar con un método “getProductById” el cual debe buscar en el arreglo el producto que coincida con el id, en caso de no coincidir ningún id, mostrar en consola un error “Not found”
 
 /////////////////
-Formato del entregable:
+
+## Formato del entregable:
+
 Archivo de Javascript listo para ejecutarse desde node.

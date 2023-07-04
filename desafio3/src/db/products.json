@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "titulo1",
+    "description": "desc1",
+    "price": 1000,
+    "thumbnail": "imgan",
+    "code": "ABC",
+    "stock": 45
+  },
+  {
+    "id": 2,
+    "title": "titulo1",
+    "description": "desc1",
+    "price": 1000,
+    "thumbnail": "imgan",
+    "code": "ABC",
+    "stock": 45
+  },
+  {
+    "id": 3,
+    "title": "titulo1",
+    "description": "desc1",
+    "price": 1000,
+    "thumbnail": "imgan",
+    "code": "ABC",
+    "stock": 45
+  },
+  {
+    "id": 4,
+    "title": "titulo1",
+    "description": "desc1",
+    "price": 1000,
+    "thumbnail": "imgan",
+    "code": "ABC",
+    "stock": 45
+  }
+]

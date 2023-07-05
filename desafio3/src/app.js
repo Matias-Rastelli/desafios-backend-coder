@@ -17,15 +17,15 @@ app.get("/", async (req, res) => {
 
 app.get("/products", async (req, res) => {
   try {
+    const { limit } = req.query
     const products = await productManager.getProducts()
-    res.send(products)
+    res.send(limit ? products.slice(0, parseInt(limit)) : products)
   } catch (e) {
     res.status(502).send({ error: true })
   }
 })
 
 app.get("/products/:productId", async (req, res) => {
-  //falta agregar el parametro limit y su correspondiente funcion.
   try {
     const { productId } = req.params
     const product = await productManager.getProductByID(productId)

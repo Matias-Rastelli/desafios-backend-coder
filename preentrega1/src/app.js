@@ -4,7 +4,6 @@ import cartRouter from "../routes/routes.cart.js"
 
 const app = express()
 app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
 
 app.use("/api/product", productRouter)
 app.use("/api/cart", cartRouter)

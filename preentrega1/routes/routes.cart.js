@@ -26,4 +26,14 @@ cartRouter.get("/:cartId", async (req, res) => {
   }
 })
 
+cartRouter.post("/:cartId/product/:productId", async (req, res) => {
+  try {
+    const { cartId, productId } = req.params
+    const cart = await cartManager.addProductToCart(cartId, productId)
+    res.send(cart)
+  } catch (e) {
+    res.status(502).send({ error: true })
+  }
+})
+
 export default cartRouter

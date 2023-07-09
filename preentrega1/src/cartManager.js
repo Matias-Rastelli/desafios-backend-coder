@@ -31,7 +31,6 @@ export default class cartManager {
   addCart = async (arrayProducts) => {
     try {
       const carts = await this.#readFile()
-
       const newCart = {
         id: carts.length == 0 ? 1 : carts[carts.length - 1].id + 1,
         products: arrayProducts,
@@ -56,7 +55,6 @@ export default class cartManager {
   getCartByID = async (id) => {
     try {
       const carts = await this.#readFile()
-
       const cartFinded = carts.find((cart) => cart.id == id)
       if (!cartFinded) {
         return console.log(`Cart not found`)
@@ -67,13 +65,23 @@ export default class cartManager {
     }
   }
 
-  addProductsToCart = async (cartID, productID) => {
+  addProductToCart = async (cartID, productID) => {
     try {
       const carts = await this.#readFile()
-      const cartFinded = this.getCartByID(cartID)
+      const cartIndex = carts.findIndex((cart) => cart.id == cartID)
+      const cart = carts[cartIndex]
 
+      if (cartIndex !== -1) {
+        const productIndex = cart.products.findIndex(
+          (product) => product.productID == productID
+        )
+        productIndex !== -1
+          ? (cart.products[productIndex].quantity += 1)
+          : cart.products.push({ productID: parseInt(productID), quantity: 1 })
+      }
       this.carts = carts
       await this.#writeFile(carts)
+      return cart
     } catch (e) {
       console.log(e)
     }

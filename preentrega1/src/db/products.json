@@ -6,7 +6,9 @@
     "price": 2000,
     "thumbnail": "sin imagen miniatura por el momento",
     "code": "LS001",
-    "stock": 10
+    "stock": 10,
+    "status": true,
+    "category": "azul"
   },
   {
     "id": 2,
@@ -15,7 +17,9 @@
     "price": 2500,
     "thumbnail": "sin imagen miniatura por el momento",
     "code": "LS002",
-    "stock": 5
+    "stock": 5,
+    "status": true,
+    "category": "rojo"
   },
   {
     "id": 3,
@@ -24,16 +28,20 @@
     "price": 1800,
     "thumbnail": "sin imagen miniatura por el momento",
     "code": "LS003",
-    "stock": 8
+    "stock": 8,
+    "status": true,
+    "category": "verde"
   },
   {
     "id": 4,
     "title": "Sable láser de Yoda",
-    "description": "Sable láser de color violeta con empuñadura única",
+    "description": "Sable láser de color verde con empuñadura única",
     "price": 2200,
     "thumbnail": "sin imagen miniatura por el momento",
     "code": "LS004",
-    "stock": 3
+    "stock": 3,
+    "status": true,
+    "category": "verde"
   },
   {
     "id": 5,
@@ -42,7 +50,9 @@
     "price": 2300,
     "thumbnail": "sin imagen miniatura por el momento",
     "code": "LS005",
-    "stock": 7
+    "stock": 7,
+    "status": true,
+    "category": "amarillo"
   },
   {
     "id": 6,
@@ -51,42 +61,52 @@
     "price": 2700,
     "thumbnail": "sin imagen miniatura por el momento",
     "code": "LS006",
-    "stock": 4
+    "stock": 4,
+    "status": true,
+    "category": "negro"
   },
   {
     "id": 7,
     "title": "Sable láser de Mace Windu",
-    "description": "Sable láser de color plateado con empuñadura brillante",
+    "description": "Sable láser de color violeta con empuñadura brillante",
     "price": 2400,
     "thumbnail": "sin imagen miniatura por el momento",
     "code": "LS007",
-    "stock": 6
+    "stock": 6,
+    "status": true,
+    "category": "violeta"
   },
   {
     "id": 8,
     "title": "Sable láser de Anakin Skywalker",
-    "description": "Sable láser de color dorado con empuñadura majestuosa",
+    "description": "Sable láser de color azul con empuñadura majestuosa",
     "price": 2600,
     "thumbnail": "sin imagen miniatura por el momento",
     "code": "LS008",
-    "stock": 9
+    "stock": 9,
+    "status": true,
+    "category": "azul"
   },
   {
     "id": 9,
     "title": "Sable láser de Ahsoka Tano",
-    "description": "Sable láser de color verde y azul con empuñadura distintiva",
+    "description": "Sable láser de color blanco con empuñadura distintiva",
     "price": 2800,
     "thumbnail": "sin imagen miniatura por el momento",
     "code": "LS009",
-    "stock": 3
+    "stock": 3,
+    "status": true,
+    "category": "blanco"
   },
   {
     "id": 10,
-    "title": "Sable láser de Yoda",
-    "description": "Sable láser de color verde con empuñadura pequeña y distintiva",
+    "title": "Sable láser de Shaak Ti",
+    "description": "Sable láser de color verde con empuñadura larga y robusta",
     "price": 2200,
     "thumbnail": "sin imagen miniatura por el momento",
     "code": "LS010",
-    "stock": 3
+    "stock": 3,
+    "status": true,
+    "category": "verde"
   }
 ]

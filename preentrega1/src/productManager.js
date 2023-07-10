@@ -28,7 +28,17 @@ export default class ProductManager {
     }
   }
 
-  addProduct = async (title, description, price, thumbnail, code, stock) => {
+  addProduct = async (product) => {
+    const {
+      title,
+      description,
+      price,
+      thumbnail = "",
+      code,
+      stock,
+      category,
+      status = true,
+    } = product
     try {
       const products = await this.#readFile()
 
@@ -40,23 +50,26 @@ export default class ProductManager {
         thumbnail,
         code,
         stock,
+        category,
+        status,
       }
 
       const anyEmpty = Object.values(newProduct).some(
         (prop) => prop === undefined
       )
       if (anyEmpty) {
-        return console.log("Todas los campos deben ser rellenados")
+        return { error: "Todas los campos deben ser rellenados" }
       }
 
       const isDuplicated = products.some((product) => product.code === code)
       if (isDuplicated) {
-        return console.log("codigo duplicado")
+        return { error: "codigo duplicado" }
       }
 
       this.products = products
       this.products.push(newProduct)
       await this.#writeFile(products)
+      return newProduct
     } catch (e) {
       console.log(e)
     }
@@ -90,9 +103,9 @@ export default class ProductManager {
       const products = await this.#readFile()
 
       const IdProductToUpdate = products.findIndex(
-        (product) => product.id === id
+        (product) => product.id == id
       )
-      if (IdProductToUpdate === -1) return console.log(`Product not found`)
+      if (IdProductToUpdate === -1) return { error: `Product not found` }
 
       const updatedProduct = {
         ...products[IdProductToUpdate],
@@ -105,7 +118,7 @@ export default class ProductManager {
           (product) => product.code === updatedProduct.code
         )
         if (isDuplicated) {
-          return console.log(`Campo "Code" duplicado`)
+          return { error: `Campo Code duplicado` }
         }
       }
       products[IdProductToUpdate] = updatedProduct
@@ -122,14 +135,21 @@ export default class ProductManager {
       const products = await this.#readFile()
 
       const IdProductToDelete = products.findIndex(
-        (product) => product.id === id
+        (product) => product.id == id
       )
-      if (IdProductToDelete === -1) return console.log(`Product not found`)
+      if (IdProductToDelete === -1) return { error: `Product not found` }
 
       const newProducts = products.filter((product) => product.id != id)
 
       this.products = newProducts
       await this.#writeFile(newProducts)
+      return {
+        productDeleted: {
+          id: products[IdProductToDelete].id,
+          title: products[IdProductToDelete].title,
+        },
+        deleted: true,
+      }
     } catch (e) {
       console.log(e)
     }

@@ -29,15 +29,18 @@ export default class cartManager {
   }
 
   addCart = async (arrayProducts) => {
+    // formato del array de productos = [{ productID: type:number, quantity: type:number },{ productID: type:number, quantity: type:number }]
     try {
       const carts = await this.#readFile()
       const newCart = {
         id: carts.length == 0 ? 1 : carts[carts.length - 1].id + 1,
         products: arrayProducts,
       }
+
       this.carts = carts
       this.carts.push(newCart)
       await this.#writeFile(carts)
+      return newCart
     } catch (e) {
       console.log(e)
     }

@@ -1,0 +1,218 @@
+
+
+<style>
+    h1 {
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    table.productTable {
+      border: 2px solid #A40808;
+      background-color: #EEE7DB;
+      width: 80%;
+      text-align: center;
+      border-collapse: collapse;
+    }
+
+    table.productTable td,
+    table.productTable th {
+      border: 1px solid #AAAAAA;
+      padding: 3px 2px;
+    }
+
+    table.productTable tbody td {
+      font-size: 13px;
+    }
+
+    table.productTable tr:nth-child(even) {
+      background: #F5C8BF;
+    }
+
+    table.productTable thead {
+      background: #A40808;
+    }
+
+    table.productTable thead th {
+      font-size: 19px;
+      font-weight: bold;
+      color: #FFFFFF;
+      text-align: center;
+      border-left: 2px solid #A40808;
+    }
+
+    table.productTable thead th:first-child {
+      border-left: none;
+    }
+
+    table.productTable tfoot td {
+      font-size: 13px;
+    }
+
+    table.productTable tfoot .links {
+      text-align: right;
+    }
+
+    table.productTable tfoot .links a {
+      display: inline-block;
+      background: #FFFFFF;
+      color: #A40808;
+      padding: 2px 8px;
+      border-radius: 5px;
+    }
+
+    #addProduct {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid grey;
+      border-radius: 5px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+body {
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            width: 700px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        input[type="number"] {
+            /* Customize number input if needed */
+        }
+
+        input[type="text"]:disabled {
+            background-color: #f7f7f7;
+            color: #888;
+            cursor: not-allowed;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button[type="submit"] {
+            background-color: #28a745;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        button[type="submit"]:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        #deleteProduct {
+            text-align: center;
+            border: 1px solid grey;
+            border-radius: 5px;
+            max-width: 300px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+        }
+        .divForms{
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .imputID{
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+  </style>
+
+<h1>Listado de productos Real Time</h1>
+<div class="container">
+  <table class="productTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Thumbnail</th>
+        <th>Code</th>
+        <th>Stock</th>
+        <th>Status</th>
+        <th>Category</th>
+      </tr>
+    </thead>
+    <tbody id="productList">
+  </table>
+
+<div class="divForms">
+    <form id="addProduct">
+        <label for="title">Título:</label>
+        <input type="text" name="title" required><br>
+
+        <label for="description">Descripción:</label>
+        <textarea name="description" required></textarea><br>
+
+        <label for="price">Precio:</label>
+        <input type="number" name="price" required><br>
+
+        <label for="thumbnail">Miniatura:</label>
+        <input type="text" name="thumbnail" value="sin imagen miniatura por el momento" disabled><br>
+
+        <label for="code">Código:</label>
+        <input type="text" name="code" required><br>
+
+        <label for="stock">Stock:</label>
+        <input type="number" name="stock" required><br>
+
+        <label for="category">Categoría:</label>
+        <input type="text" name="category" required><br>
+
+        <button type="submit">Agregar Producto</button>
+    </form>
+    <form id="deleteProduct">
+        <input type="text" name="productId" placeholder="ID del producto a eliminar" class="imputID">
+        <button type="submit">Eliminar Producto</button>
+    </form>
+</div>
+</div>
+
+<script src="/socket.io/socket.io.js"> </script>
+<script src="/js/realTimeProduct.js"></script>

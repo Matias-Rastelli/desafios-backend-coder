@@ -1,6 +1,5 @@
 import { Router } from "express"
 import ProductManager from "../src/productManager.js"
-import { upload } from "../config/multer.js"
 
 const productManager = new ProductManager("products")
 const productRouter = Router()

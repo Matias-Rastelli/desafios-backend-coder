@@ -1,0 +1,52 @@
+<script src="/socket.io/socket.io.js"> </script>
+<script src="/js/socket.js"></script>
+
+<style>
+  h1{text-align: center;} .container{ display: flex; justify-content: center; }
+  table.productTable { border: 2px solid #A40808; background-color: #EEE7DB;
+  width: 80%; text-align: center; border-collapse: collapse; }
+  table.productTable td, table.productTable th { border: 1px solid #AAAAAA;
+  padding: 3px 2px; } table.productTable tbody td { font-size: 13px; }
+  table.productTable tr:nth-child(even) { background: #F5C8BF; }
+  table.productTable thead { background: #A40808; } table.productTable thead th
+  { font-size: 19px; font-weight: bold; color: #FFFFFF; text-align: center;
+  border-left: 2px solid #A40808; } table.productTable thead th:first-child {
+  border-left: none; } table.productTable tfoot td { font-size: 13px; }
+  table.productTable tfoot .links { text-align: right; } table.productTable
+  tfoot .links a{ display: inline-block; background: #FFFFFF; color: #A40808;
+  padding: 2px 8px; border-radius: 5px; }
+</style>
+
+<h1>Listado de productos </h1>
+<div class="container">
+  <table class="productTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Thumbnail</th>
+        <th>Code</th>
+        <th>Stock</th>
+        <th>Status</th>
+        <th>Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each products}}
+        <tr>
+          <td> {{this.id}} </td>
+          <td> {{this.title}} </td>
+          <td> {{this.description}} </td>
+          <td> $ {{this.price}} </td>
+          <td> {{this.thumbnail}} </td>
+          <td> {{this.code}} </td>
+          <td> {{this.stock}} </td>
+          <td> {{this.status}} </td>
+          <td> {{this.category}} </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

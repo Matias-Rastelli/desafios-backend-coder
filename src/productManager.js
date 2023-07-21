@@ -1,8 +1,11 @@
 import fs from "fs/promises"
+import { dirname } from "path"
+import { fileURLToPath } from "url"
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default class ProductManager {
   constructor(path) {
-    this.path = `./db/${path}.json`
+    this.path = `${__dirname}/db/${path}.json`
     this.products = []
     if (this.#readFile()) {
       console.log("Constructor productos", "archivo ya creado")
